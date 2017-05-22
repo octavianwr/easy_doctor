@@ -20,44 +20,38 @@
       <br>password <br>
       <input type="password" name="pass" id="pass" min="6" required>
       <br>No. Telepon <br>
-      <input type="text" pattern="[0-9]{12}" name="phonenumber" id="phonenumber" required>
+      <input type="text" pattern="[0-9]{10}{11}{12}{13}" name="phonenumber" id="phonenumber" required>
       <tr>
     <br>
     <td>Provinsi</td>
     <br>
     <td>
-      <form action="search-advanced.php" method="GET">
-        <select name="provinsi">
+        <select name="prov" id="prov">
         <?php
           $result_patient = mysqli_query($koneksi, "SELECT * FROM provinces");
           while($row = mysqli_fetch_array($result_patient))
           {
         ?>      
-          <option value="<?php echo $row['id']?>"><?php echo $row['name']; ?></option>
+          <option value="<?php echo $row['name']?>"><?php echo $row['name']; ?></option>
         <?php
           }
         ?>
         </select>
-        <button type="submit">GO</button>
-      </form>
     </td>
    </tr>
-   
-  <?php
-    if(isset($provinsi))
-    {
-  ?>
+   <br>
+
   <tr>
     <td>Kota</td>
     <br>
     <td>
-    <select name="kota">
+    <select name="city" id="city">
       <?php
-        $result_patient = mysqli_query($koneksi, "SELECT * FROM regencies WHERE province_id = '$provinsi'");
+        $result_patient = mysqli_query($koneksi, "SELECT * FROM regencies ");
         while($row = mysqli_fetch_array($result_patient))
         {
       ?>      
-        <option value="<?php echo $row['id']?>"><?php echo $row['name']; ?></option>
+        <option value="<?php echo $row['name']?>"><?php echo $row['name']; ?></option>
       <?php
         }
       ?>
@@ -65,9 +59,6 @@
       </td>
    </tr>
 
-   <?php
-    }
-  ?>
    </table>
       <br>jalan <br>
       <input type="text" name="street" id="street" required>
@@ -82,7 +73,5 @@
 
       <table cellpadding="3" cellspacing="0">
    
-
-
   </body>
 </html>

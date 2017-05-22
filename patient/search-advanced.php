@@ -2,7 +2,15 @@
 include "../config.php";
   if(isset($_GET['provinsi']))
   {
-    $provinsi = $_GET['provinsi'];
+    $provinsi = $_GET['provinsi'];  
+  }
+  
+  if(isset($_POST['kota']))
+  {
+    $kota = $_POST['kota']
+    if(!empty($kota))
+    $query = "SELECT * from admin_rs WHERE city like '$kota'";
+    $result = mysqli_query($koneksi, $query);
   }
 ?>
 
@@ -37,10 +45,12 @@ include "../config.php";
     </td>
    </tr>
    
+   
   <?php
     if(isset($provinsi))
     {
   ?>
+  <form action="search-advanced.php" method="POST">
   <tr>
     <td>Kota</td>
     <td>:</td>
@@ -59,13 +69,25 @@ include "../config.php";
       </td>
    </tr>
 
-
-    
+   <tr>
+    <td>
+    <button type="submit" name="submit">SUBMIT</button>
+    </td>
+  </tr>
+   </form>
+  
   <?php
     }
   ?>
-    
-
+   
+  <br>
+  <?php
+    if(isset($result))
+    {
+      while($row=mysqli_fetch_array($result))
+        echo $row['name'] . "<br>";
+    }
+  ?>
   </table>
 </body>
 </html>

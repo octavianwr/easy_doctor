@@ -22,7 +22,7 @@
       <br>tanggal lahir <br>
       <input type="date" name="birth" class="datepicker" required>
       <br>nomor telpon <br>
-      <input type="text" pattern="[0-9]" name="phonenumber" id="phonenumber" required>
+      <input type="text" pattern="[0-9]{10}{11}{12}{13}" name="phonenumber" id="phonenumber" required>
       <br> alamat <br>
       <textarea id="textarea1" name="address" class="materialize-textarea" required></textarea>
       <br><span>Unggah Foto Profil</span><br>
