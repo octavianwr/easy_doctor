@@ -29,7 +29,7 @@ if(isset($_POST['nama']) && isset($_POST['spesialisasi']))
     <tr>
     <td>Nama</td>
     <td>:</td>
-    <td><input type="text" name="nama" size="20" required></td>
+    <td><input type="text" name="nama" size="20"></td>
    </tr>
 
    <tr>

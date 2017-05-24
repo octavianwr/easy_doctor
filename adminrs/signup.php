@@ -63,7 +63,7 @@
       <br>jalan <br>
       <input type="text" name="street" id="street" required>
       <br><span>Unggah Foto Profil</span><br>
-      <input type="file" name="photo">
+      <input type="file" accept="image/x-png,image/gif,image/jpeg" name="photo">
       <p>
       <input type="checkbox" id="admin_rs" required/>
       <label for="test5">Saya Setuju</label>
