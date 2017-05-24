@@ -27,9 +27,27 @@
               <br>Email<br>
               <input  type="email" name="email" id="email">
               <br>Nomor Telpon <br>
-              <input type="number" name="phonenumber" id="phonenumber">
+              <input type="number" pattern="[0-9]{10}{11}{12}{13}" name="phonenumber" id="phonenumber">
               <br><br><span>Unggah Foto Dokter</span><br>
-              <input type="file" name="photo">
+              <input type="file" accept="image/x-png,image/gif,image/jpeg" name="photo">
+               <br>
+              <td>Provinsi</td>
+              <br>
+              <td>
+                  <select name="spesialisasi" id="spesialisasi">
+                  <?php
+                    $result_specialization = mysqli_query($connect, "SELECT * FROM specialization");
+                    while($row = mysqli_fetch_array($result_specialization))
+                    {
+                  ?>      
+                    <option value="<?php echo $row['id_specialization']?>"><?php echo $row['specialization_name']; ?></option>
+                  <?php
+                    }
+                  ?>
+                  </select>
+              </td>
+             </tr>
+             <br>
               <p>
               <input type="checkbox" id="admin_rs" required/>
               <label for="test5">Saya menyetujui Penamban Dokter</label>

@@ -4,14 +4,13 @@ include "../config.php";
   {
     $provinsi = $_GET['provinsi'];  
   }
-  
-  if(isset($_POST['kota']))
+
+  if(isset($_POST['submit2']))
   {
-    $kota = $_POST['kota']
-    if(!empty($kota))
-    $query = "SELECT * from admin_rs WHERE city like '$kota'";
-    $result = mysqli_query($koneksi, $query);
+    $kota = $_POST['kota'];
+    $ambil_dokter = mysqli_query($koneksi, "SELECT * from admin_rs INNER JOIN doctor ON doctor.hospital_id = admin_rs.id_hospital WHERE id_regencies = '$kota' ");
   }
+  
 ?>
 
 <!DOCTYPE html>
@@ -71,23 +70,20 @@ include "../config.php";
 
    <tr>
     <td>
-    <button type="submit" name="submit">SUBMIT</button>
+    <button type="submit" name="submit2">SUBMIT</button>
     </td>
   </tr>
    </form>
-  
-  <?php
-    }
-  ?>
-   
-  <br>
-  <?php
-    if(isset($result))
-    {
-      while($row=mysqli_fetch_array($result))
-        echo $row['name'] . "<br>";
-    }
-  ?>
   </table>
+  <?php
+    }
+    if(isset($ambil_dokter))
+    {
+      while($row = mysqli_fetch_array($ambil_dokter))
+      {
+        echo $row['phone_number'];
+      }
+    }
+  ?>
 </body>
 </html>

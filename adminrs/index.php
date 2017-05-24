@@ -1,7 +1,8 @@
 <?php
-  include '../connect.php';
+  session_start();
+  include '../config.php';
   //require 'header.php';
-  if($_SESSION['id_hospital']=="nouser"){
+  if($_SESSION['id_hospital'] == "nouser"){
 ?>
 <script language="javascript">alert("Anda belum login");</script>
 <script>document.location.href='signin.php';</script>

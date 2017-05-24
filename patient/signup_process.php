@@ -12,10 +12,14 @@
 	$folder = "img";
 	$foto_loc = $_FILES["photo"]["tmp_name"];
 	$foto_name = $folder."/".$_FILES["photo"]["name"];
+
+	$password=password_hash($password, PASSWORD_DEFAULT);
+
+
 	if($foto_size < 1000000){
 		move_uploaded_file($foto_loc, $foto_name);
-		$sql_tambah = "INSERT INTO patient(id_patient, name, username, email, password, birth_date, phone_number, address, photo_patient)
-					   VALUES ('','$nama', '$username', '$email', '$password', '$tl', '$telp', '$alamat', '$foto_name')";
+		$sql_tambah = "INSERT INTO patient(name, username, email, password, birth_date, phone_number, address, photo_patient)
+					   VALUES ('$nama', '$username', '$email', '$password', '$tl', '$telp', '$alamat', '$foto_name')";
 		mysqli_query($connect,$sql_tambah);
 	?>
 		<script language="javascript">alert("Register Successful");</script>
