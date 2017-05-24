@@ -1,0 +1,257 @@
+@import url("http://fonts.googleapis.com/css?family=Montserrat:400,700");
+@import url("http://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.css");
+* {
+  margin: 0;
+  padding: 0;
+}
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  font: 12px/1 'Montserrat', sans-serif;
+  color: #333;
+  background: #333;
+  overflow-x: hidden;
+}
+
+.wrapper {
+  display: flex;
+  min-height: 100%;
+}
+
+.sidebar {
+  position: absolute;
+  width: 220px;
+}
+
+.content {
+  flex: 1;
+  padding: 30px;
+  background: #eee;
+  box-shadow: 0 0 5px black;
+  transform: translate3d(0, 0, 0);
+  transition: transform .3s;
+}
+
+.content.isOpen {
+  transform: translate3d(220px, 0, 0);
+}
+
+.button {
+  cursor: pointer;
+}
+
+.button:before {
+  content: '\f0c9';
+  font: 42px fontawesome;
+}
+
+/* Demo Navigation */
+.title {
+  font-size: 16px;
+  line-height: 50px;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 7px;
+  color: #eee;
+  border-bottom: 1px solid #333;
+  background: #2a2a2a;
+}
+
+.nav li a {
+  position: relative;
+  display: block;
+  padding: 15px 15px 15px 50px;
+  font-size: 12px;
+  color: #eee;
+  border-bottom: 1px solid #5b5;
+}
+
+.nav li a:before {
+  font: 14px fontawesome;
+  position: absolute;
+  top: 14px;
+  left: 20px;
+}
+
+.nav li:nth-child(1) a:before {
+  content: '\f00a';
+}
+
+.nav li:nth-child(2) a:before {
+  content: '\f002';
+}
+
+.nav li:nth-child(3) a:before {
+  content: '\f005';
+}
+
+.nav li:nth-child(4) a:before {
+  content: '\f003';
+}
+
+
+.nav li:nth-child(5) a:before {
+  content: '\f090';
+}
+
+
+
+.nav li a:hover {
+  background: #5b5;
+}
+
+.nav li a.active {
+  box-shadow: inset 5px 0 0 #5b5, inset 6px 0 0 #333;
+  background: #5b5;
+}
+
+/* Demo Description */
+h1 {
+  margin: 25px 0 15px;
+  font-size: 28px;
+  font-weight: 400;
+}
+
+h2 {
+  font-size: 18px;
+  font-weight: 400;
+  color: #999;
+}
+
+a {
+    color: #333;
+}
+
+a:hover, a:focus {
+    text-decoration: none;
+    color: #5b5;
+}
+
+.profile_pic {
+    width: 35%;
+    float: left
+}
+.img-circle.profile_img {
+    width: 70%;
+    background: #fff;
+    margin-left: 15%;
+    z-index: 1000;
+    position: inherit;
+    margin-top: 20px;
+    border: 1px solid rgba(52, 73, 94, 0.44);
+    padding: 4px
+}
+.profile_info {
+    padding: 25px 10px 10px;
+    width: 65%;
+    float: left
+}
+.profile_info span {
+    font-size: 13px;
+    line-height: 30px;
+    color: #BAB8B8
+}
+.profile_info h2 {
+    font-size: 14px;
+    color: #ECF0F1;
+    margin: 0;
+    font-weight: 300
+}
+.profile.img_2 {
+    text-align: center
+}
+.profile.img_2 .profile_pic {
+    width: 100%
+}
+.profile.img_2 .profile_pic .img-circle.profile_img {
+    width: 50%;
+    margin: 10px 0 0
+}
+.profile.img_2 .profile_info {
+    padding: 15px 10px 0;
+    width: 100%;
+    margin-bottom: 10px;
+    float: left
+}
+h2 {
+    text-transform: none ;
+    line-height: 20px;
+     margin: 0;
+ 
+}
+
+.nav li a.active {
+    box-shadow: inset 0 0 0 #5b5, inset 0 0 0 #333!important;
+    background: #5b5;
+}
+
+.content {
+    flex: 1;
+    padding-right: 0px;
+	padding-left : 0px;
+    background: #eee;
+    box-shadow: 0 0 5px black;
+    transform: translate3d(0, 0, 0);
+    transition: transform .3s;
+}
+
+.button:before {
+    content: '\f0c9';
+    font: 42px fontawesome;
+    padding: 30px;
+    padding-bottom: 30px;
+}
+
+/* Home Section */
+#intro {
+	display: table;
+	width: 100%;
+	height: auto;
+	padding: 100px 0;
+	text-align: center;
+	color: #fff;
+	background: url(../img/doctors2.jpeg) no-repeat center center fixed;
+	background-color: #000;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	background-size: cover;
+	-o-background-size: cover;
+}
+#intro .intro-body {
+	display: table-cell;
+	vertical-align: middle;
+}
+#intro .intro-body H1 {
+	font-size: 80px;
+	font-weight: 700;
+	color: rgba(255, 0, 0, 0.8);
+	text-transform: uppercase;
+}
+#intro .intro-body .brand-heading {
+	color: #ff0000;
+	text-shadow: 0 4px #0000ff;
+}
+#intro .intro-body .intro-text {
+	font-size: 18px;
+	color: #333!important;	
+}
+
+@media(min-width:768px) {
+#intro {
+	height: 50%;
+	padding: 0;
+}
+#intro .intro-body .intro-text {
+	font-size: 30px;
+	letter-spacing: 1px;
+	margin-bottom: 100px;
+	color: #333!important;
+}
+}
