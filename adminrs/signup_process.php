@@ -14,12 +14,10 @@
 	$foto_loc = $_FILES["photo"]["tmp_name"];
 	$foto_name = $folder."/".$_FILES["photo"]["name"];
 
-	$password=password_hash($password, PASSWORD_DEFAULT);
-
 	if($foto_size < 1000000){
 		move_uploaded_file($foto_loc, $foto_name);
-		$sql_tambah = "INSERT INTO admin_rs( hospital_name, username, email, password, phone_number, street, id_regencies, id_provinces, photo_rs)
-					   VALUES ('$nama', '$username', '$email', '$password', '$tlp', '$jalan', '$kota', '$prov', '$foto_name')";
+		$sql_tambah = "INSERT INTO admin_rs(id_hospital, hospital_name, username, email, password, phone_number, street, city, province, photo_rs)
+					   VALUES ('','$nama', '$username', '$email', '$password', '$tlp', '$jalan', '$kota', '$prov', '$foto_name')";
 		mysqli_query($connect,$sql_tambah);
 	?>
 		<script language="javascript">alert("Register Successful");</script>

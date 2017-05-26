@@ -1,5 +1,5 @@
 <?php
-  include '../config.php';
+  include '../connect.php';
 ?>
 
 <!DOCTYPE html>
@@ -20,58 +20,20 @@
       <br>password <br>
       <input type="password" name="pass" id="pass" min="6" required>
       <br>No. Telepon <br>
-      <input type="text" pattern="[0-9]{10}{11}{12}{13}" name="phonenumber" id="phonenumber" required>
-      <tr>
-    <br>
-    <td>Provinsi</td>
-    <br>
-    <td>
-        <select name="prov" id="prov">
-        <?php
-          $result_patient = mysqli_query($koneksi, "SELECT * FROM provinces");
-          while($row = mysqli_fetch_array($result_patient))
-          {
-        ?>      
-          <option value="<?php echo $row['id']?>"><?php echo $row['name']; ?></option>
-        <?php
-          }
-        ?>
-        </select>
-    </td>
-   </tr>
-   <br>
-
-  <tr>
-    <td>Kota</td>
-    <br>
-    <td>
-    <select name="city" id="city">
-      <?php
-        $result_patient = mysqli_query($koneksi, "SELECT * FROM regencies ");
-        while($row = mysqli_fetch_array($result_patient))
-        {
-      ?>      
-        <option value="<?php echo $row['id']?>"><?php echo $row['name']; ?></option>
-      <?php
-        }
-      ?>
-      </select>
-      </td>
-   </tr>
-
-   </table>
+      <input type="number" name="phonenumber" id="phonenumber" required>
       <br>jalan <br>
       <input type="text" name="street" id="street" required>
+      <br>kota <br>
+      <input type="text" name="city" id="city" required>
+      <br>provinsi <br>
+      <input type="text" name="prov" id="prov" required>
       <br><span>Unggah Foto Profil</span><br>
-      <input type="file" accept="image/x-png,image/gif,image/jpeg" name="photo">
+      <input type="file" name="photo">
       <p>
       <input type="checkbox" id="admin_rs" required/>
-      <label for="test5">Saya Setuju</label>
+      <label for="test5">Klik jika setuju</label>
       </p>
       <br><button class="btn waves-effect waves-teal" type="submit" >Submit</button>
     </form>
-
-      <table cellpadding="3" cellspacing="0">
-   
   </body>
 </html>
