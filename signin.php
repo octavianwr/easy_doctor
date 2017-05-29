@@ -1,16 +1,11 @@
 <?php
   require_once 'connect.php';
-  error_reporting(E_PARSE);
-  if($_SESSION['id_patient']!="nouser"){ //ini masih status global, belum dipisah antara pasien dan admin
-?>
-<script>document.location.href='patient/index.php';</script>
-  <?php }
-
-if($_SESSION['id_hospital']!="nouser"){ //ini masih status global, belum dipisah antara pasien dan admin
-?>
-<script>document.location.href='adminrs/index.php';</script>
-<?php }
-?>
+    if($_SESSION['id_hospital']!="nouser" OR $_SESSION['id_patient'] != "nouser"){
+ ?>
+ <script language="javascript">alert("Anda sudah login");</script>
+ <script>document.location.href='index.php';</script>
+   <?php }
+ ?>
 <!DOCTYPE html>
 <html>
   <head>

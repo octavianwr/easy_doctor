@@ -3,13 +3,9 @@ include "../config.php";
   if(isset($_GET['provinsi']))
   {
     $provinsi = $_GET['provinsi'];  
+    $ambil_dokter = mysqli_query($koneksi, "SELECT  specialization_name, hospital_name, street, phone_number, doctor.name AS dname, regencies.name AS rname from admin_rs INNER JOIN doctor JOIN specialization ON doctor.hospital_id = admin_rs.id_hospital AND doctor.specialization_id = specialization.id_specialization  WHERE id_provinces = '$provinsi' ");
   }
 
-  if(isset($_POST['submit2']))
-  {
-    $kota = $_POST['kota'];
-    $ambil_dokter = mysqli_query($koneksi, "SELECT * from admin_rs INNER JOIN doctor ON doctor.hospital_id = admin_rs.id_hospital WHERE id_regencies = '$kota' ");
-  }
   
 ?>
 
@@ -45,45 +41,48 @@ include "../config.php";
    </tr>
    
    
-  <?php
-    if(isset($provinsi))
-    {
-  ?>
-  <form action="search-advanced.php" method="POST">
-  <tr>
-    <td>Kota</td>
-    <td>:</td>
-    <td>
-    <select name="kota">
-      <?php
-        $result_patient = mysqli_query($koneksi, "SELECT * FROM regencies WHERE province_id = '$provinsi'");
-        while($row = mysqli_fetch_array($result_patient))
-        {
-      ?>      
-        <option value="<?php echo $row['id']?>"><?php echo $row['name']; ?></option>
-      <?php
-        }
-      ?>
-      </select>
-      </td>
-   </tr>
-
-   <tr>
-    <td>
-    <button type="submit" name="submit2">SUBMIT</button>
-    </td>
-  </tr>
-   </form>
   </table>
+
+  <h3>Data Dokter</h3>
+      <table cellpadding="6" cellspacing="0" border="1">
+      <tr>
+        <th>No</th>
+        <th>Nama</th>
+        <th>Spesialisasi</th>
+        <th>Rumah Sakit</th>
+        <th>Kota</th>
+        <th>Alamat</th>
+        <th>No. HP</th>   
+      </tr>
+
   <?php
+    
+    if(mysqli_num_rows($result_patient) == 0){
+      ?>
+      <tr><td colspan="6">Tidak ada data!</td></tr>
+      <?php
     }
-    if(isset($ambil_dokter))
+
+    else if(isset($ambil_dokter))
     {
+      $nomor = 1;
       while($row = mysqli_fetch_array($ambil_dokter))
-      {
-        echo $row['phone_number'];
+      { ?>
+      
+
+      <tr>
+        <td><?php echo $nomor++; ?></td>
+        <td><?php echo $row['dname']; ?></td>
+        <td><?php echo $row['specialization_name']; ?></td>
+        <td><?php echo $row['hospital_name']; ?></td>
+        <td><?php echo $row['kota']; ?></td>
+        <td><?php echo $row['street']; ?></td>
+        <td><?php echo $row['phone_number']; ?></td>
+      </tr>
+      <?php
       }
     }
   ?>
+  </table>
 </body>
 </html>

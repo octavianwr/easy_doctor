@@ -74,11 +74,11 @@
 			                    <form role="form" action="signin_process.php" method="post" class="login-form">
 			                    	<div class="form-group">
 			                    		<label class="sr-only" for="form-username">Email</label>
-			                        	<input type="text" name="email" placeholder="Email..." class="form-username form-control" id="form-username">
+			                        	<input type="text" name="email" placeholder="Email..." class="form-username form-control" id="form-username" required>
 			                        </div>
 			                        <div class="form-group">
 			                        	<label class="sr-only" for="form-password">Kata Sandi</label>
-			                        	<input type="password" name="pass" placeholder="Kata Sandi..." class="form-password form-control" id="form-password">
+			                        	<input type="password" name="pass" placeholder="Kata Sandi..." class="form-password form-control" id="form-password" required>
 			                        </div>
 									<li>
 										<label class="span6">

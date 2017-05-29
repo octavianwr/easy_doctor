@@ -1,13 +1,19 @@
 <?php
 include '../connect.php';
-if($_SESSION['id_patient']=="nouser"){
+if($_SESSION['id_patient']=="nouser" and $_SESSION['email']==""){
 ?>
 <script>document.location.href='../index.php';</script>
 <?php }
-if (isset($_SESSION['id_patient'])) {
-  $id_patient = $_SESSION['id_patient'];
-    $query = mysqli_query($connect, "SELECT * FROM patient where id_patient = '$id_patient'");
-    $result = mysqli_fetch_array($query);
+if (isset($_SESSION['id_patient']) or ($_SESSION['email'])) {
+  if(isset($_SESSION['email'])){
+      $email = $_SESSION['email'];
+      $query = mysqli_query($connect, "SELECT * FROM patient where email='$email'");
+  }
+  else{
+      $id_patient = $_SESSION['id_patient'];
+      $query = mysqli_query($connect, "SELECT * FROM patient where id_patient = '$id_patient'");
+      $result = mysqli_fetch_array($query);
+  }
 ?>
 <!DOCTYPE html>
 <html >
@@ -70,7 +76,7 @@ Easy Doctor
         <a class='active'>Homepage</a>
       </li>
             <li>
-        <a>Cari Dokter</a>
+        <a href="search.php">Cari Dokter</a>
       </li>
       <li class="dropdown">
         <a a href="#" class="dropdown-toggle" data-toggle="dropdown">Spesialisasi</a>
@@ -93,9 +99,6 @@ Easy Doctor
 						</ul>
       </li>
       <li>
-        <a>Kontak</a>
-      </li>
-      <li>
         <a href="profile.php">Profile</a>
       </li>
 	  <li>
@@ -103,6 +106,9 @@ Easy Doctor
       </li>
       <li style="list-style-type:'\f08b'">
         <a href = "../listrs.php">List Rumah Sakit</a>
+      </li>
+      <li>
+        <a>Kontak</a>
       </li>
       <li style="list-style-type:'\f08b'">
         <a href = "signout.php">Logout</a>

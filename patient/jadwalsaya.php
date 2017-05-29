@@ -1,21 +1,17 @@
 <?php
-  include '../connect.php';
-  //require 'header.php';
-  if($_SESSION['id_patient']=="nouser"){ //ini masih status global, belum dipisah antara pasien dan admin
+include '../connect.php';
+if($_SESSION['id_patient']=="nouser"){
 ?>
 <script>document.location.href='../index.php';</script>
-  <?php }
+<?php }
+if (isset($_SESSION['id_patient'])) {
 
-  if($_SESSION['id_patient']!="nouser"){ //ini masih status global, belum dipisah antara pasien dan admin
-        $id_pasien = $_SESSION['id_patient'];
-          $query = mysqli_query($connect, "SELECT * FROM patient where id_patient = '$id_pasien'");
-          $result = mysqli_fetch_array($query);
-          $jadwalsaya = mysqli_query($connect, "SELECT * FROM booking WHERE id_patient = '$id_pasien'");
-          $list_jadwalsaya = mysqli_fetch_array($jadwalsaya);
-        //  $status = $list_jadwalsaya['status'];
-
-  }
-  ?>
+    $id_pasien = $_SESSION['id_patient'];
+      $query = mysqli_query($connect, "SELECT * FROM patient where id_patient = '$id_pasien'");
+      $result = mysqli_fetch_array($query);
+      $jadwalsaya = mysqli_query($connect, "SELECT * FROM booking WHERE id_patient = '$id_pasien'");
+      $list_jadwalsaya = mysqli_fetch_array($jadwalsaya);
+?>
 
 <!DOCTYPE html>
 <html >
@@ -28,16 +24,6 @@
       body { background: #fff; }
 #slidy-container {
   width: 100%; overflow: hidden; margin: 0 auto;
-}
-
-.modal-backdrop {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 1040;
-    background-color: transparent!important;
 }
     </style>
 
@@ -111,16 +97,16 @@ Easy Doctor
 						</ul>
       </li>
       <li>
-        <a>Kontak</a>
-      </li>
-      <li>
         <a href="profile.php">Profile</a>
       </li>
     <li>
-        <a href="jadwalsaya.php" class='active'>Jadwal Saya</a>
+        <a class="active" href="jadwalsaya.php">Jadwal Saya</a>
       </li>
       <li style="list-style-type:'\f08b'">
         <a href = "../listrs.php">List Rumah Sakit</a>
+      </li>
+      <li>
+        <a>Kontak</a>
       </li>
       <li style="list-style-type:'\f08b'">
         <a href = "signout.php">Logout</a>
@@ -135,13 +121,8 @@ Easy Doctor
     <a class='button'></a>
 
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
-
 <div class="container">
-	<div class="row">
-
-
+      <div class="row">
         <div class="col-md-12">
         <h4>Jadwal Saya</h4>
         <div class="table-responsive">
@@ -188,17 +169,11 @@ Easy Doctor
 
 </table>
 
-<div class="clearfix"></div>
 
-
-            </div>
-
+          </div>
         </div>
-	</div>
-</div>
-
-
-
+      </div>
+    </div>
 
 	<div id="footer">
   <div class="container">
@@ -207,60 +182,7 @@ Easy Doctor
 </div>
 </div>
   </div>
-  <div class="modal" id="edit" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
-      <div class="modal-dialog">
-    <div class="modal-content">
-          <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-        <h4 class="modal-title custom_align" id="Heading">Edit Your Detail</h4>
-      </div>
-          <div class="modal-body">
-          <div class="form-group">
-        <input class="form-control " type="text" placeholder="Mohsin">
-        </div>
-        <div class="form-group">
-
-        <input class="form-control " type="text" placeholder="Irshad">
-        </div>
-        <div class="form-group">
-        <textarea rows="2" class="form-control" placeholder="CB 106/107 Street # 11 Wah Cantt Islamabad Pakistan"></textarea>
-
-
-        </div>
-      </div>
-          <div class="modal-footer ">
-        <button type="button" class="btn btn-warning btn-lg" style="width: 100%;"><span class="glyphicon glyphicon-ok-sign"></span> Update</button>
-      </div>
-        </div>
-    <!-- /.modal-content -->
-  </div>
-      <!-- /.modal-dialog -->
-    </div>
-
-
-
-    <div class="modal" id="delete" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
-      <div class="modal-dialog">
-    <div class="modal-content">
-          <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-        <h4 class="modal-title custom_align" id="Heading">Delete this entry</h4>
-      </div>
-          <div class="modal-body">
-
-       <div class="alert alert-danger"><span class="glyphicon glyphicon-warning-sign"></span> Are you sure you want to delete this Record?</div>
-
-      </div>
-        <div class="modal-footer ">
-        <button type="button" class="btn btn-success" ><span class="glyphicon glyphicon-ok-sign"></span> Yes</button>
-        <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> No</button>
-      </div>
-        </div>
-    <!-- /.modal-content -->
-  </div>
-      <!-- /.modal-dialog -->
-    </div>
-</body>
+</div>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script type="text/javascript" src="../js/jquery.1.11.1.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
@@ -271,7 +193,6 @@ Easy Doctor
 <script type="text/javascript" src="../js/jquery.parallax.js"></script>
 <script type="text/javascript" src="../js/jqBootstrapValidation.js"></script>
 <script type="text/javascript" src="../js/contact_me.js"></script>
-<script type="text/javascript" src="../js/jadwalsaya.js"></script>
 
 <!-- Javascripts
     ================================================== -->
@@ -281,3 +202,5 @@ Easy Doctor
 <script src="../slider/js/index.js"></script>
 </body>
 </html>
+
+<?php } ?>

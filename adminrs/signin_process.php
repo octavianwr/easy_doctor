@@ -1,17 +1,18 @@
 <?php
-	include '../connect.php';
-
+	session_start();
+	include '../config.php';
+	
 if(isset($_SESSION['user'])!=""){
   header("location:index.php");
   exit;
 }
 	$email = $_POST['email'];
-	$password = $_POST['pass'];
+	$password = $_POST['pass'];	
 
-	$result_admin = mysqli_query($connect, "SELECT * FROM admin_rs WHERE email='$email' and password='$password'");
-	$row = mysqli_fetch_array($result_admin, MYSQLI_ASSOC);
-	if($row) {
-		$_SESSION['id_hospital'] = $row['id_hospital'];
+	$ambil_password = mysqli_query($koneksi, "SELECT * FROM admin_rs where email='$email'");
+	$kolom = mysqli_fetch_array($ambil_password, MYSQLI_ASSOC);
+	if(password_verify($password, $kolom['password'])) {
+		$_SESSION['id_hospital'] = $kolom['id_hospital'];
 		$_SESSION['status'] = "admin";
 		?>
 			<script language="javascript">alert("Logging Successful");</script>
@@ -22,5 +23,5 @@ if(isset($_SESSION['user'])!=""){
 			<script language="javascript">alert("Logging Unsuccessful");</script>
 			<script>document.location.href='signin.php';</script>
 	<?php }
-	mysqli_close($conn);
+	mysqli_close($koneksi);
 ?>

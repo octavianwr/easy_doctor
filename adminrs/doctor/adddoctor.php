@@ -163,28 +163,17 @@ Easy Doctor
   <label class="col-md-4 control-label" for="Phone number ">Spesialisasi Dokter</label>
   <div class="col-md-4">
   <div class="input-group">
-       <select name="spesialisasi" class="">
-
-               <option value="1" >Mata</option>
-
-               <option value="2" >Tulang & Sendi</option>
-
-               <option value="3" >Kanker</option>
-
-               <option value="4" >Anak & Bayi</option>
-
-               <option value="5" >Penyakit Pencernaan</option>
-
-               <option value="6" >Telinga, Hidung & Tenggorokan</option>
-
-               <option value="7" >Operasi Umum</option>
-
-               <option value="8" >Hati</option>
-
-               <option value="9" >Pengobatan Internal</option>
-
-               <option value="10">Operasi Plastik</option>
-       </select>
+       <select name="spesialisasi" id="spesialisasi">
+                  <?php
+                    $result_specialization = mysqli_query($connect, "SELECT * FROM specialization");
+                    while($row = mysqli_fetch_array($result_specialization))
+                    {
+                  ?>      
+                    <option value="<?php echo $row['id_specialization']?>"><?php echo $row['specialization_name']; ?></option>
+                  <?php
+                    }
+                  ?>
+                  </select>
   </div>
   </div>
 </div>

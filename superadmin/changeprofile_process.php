@@ -17,7 +17,7 @@ if($_POST){
   $tlp = $_POST['phonenumber'];
 
   $edit_profile = mysqli_query($connect, "UPDATE patient SET name = '$nama',
-  username = '$username', address = '$alamat', email = '$email', phone_number = '$tlp',
+  username = '$username', address = '$alamat', email = '$email', phone_number = '$$tlp',
   birth_date = '$ttl' WHERE id_patient = $id_patient" );
 
   if($edit_profile) {

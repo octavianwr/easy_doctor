@@ -174,8 +174,8 @@
                                         </span>
                                         <div>
 
-                                            <select name="bday_dd" id="sel-date" class="">
-                                                <option value="">Tanggal</option>
+                                            <select name="bday_dd"  class="">
+                                                <option value="0">Tanggal</option>
 
                                                     <option value="1" >1</option>
 
@@ -240,8 +240,8 @@
                                                     <option value="31" >31</option>
 
                                             </select>
-                                            <select name="bday_mm" id="sel-month" class="">
-                                                <option value="">Bulan</option>
+                                            <select name="bday_mm"  class="">
+                                                <option value="0">Bulan</option>
 
                                                     <option value="1" >Januari</option>
 
@@ -268,8 +268,8 @@
                                                     <option value="12" >Desember</option>
 
                                             </select>
-                                            <select name="bday_yy" id="sel-year" class="">
-                                                <option value="">Tahun</option>
+                                            <select name="bday_yy"  class="">
+                                                <option value="0">Tahun</option>
 
                                                     <option value="2003" >2003</option>
 

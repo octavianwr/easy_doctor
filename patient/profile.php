@@ -1,13 +1,19 @@
 <?php
 include '../connect.php';
-if($_SESSION['id_patient']=="nouser"){
+if($_SESSION['id_patient']=="nouser" and $_SESSION['email']==""){
 ?>
 <script>document.location.href='../index.php';</script>
 <?php }
-if (isset($_SESSION['id_patient'])) {
-  $id_patient = $_SESSION['id_patient'];
-    $query = mysqli_query($connect, "SELECT * FROM patient where id_patient = '$id_patient'");
-    $result = mysqli_fetch_array($query);
+if (isset($_SESSION['id_patient']) or ($_SESSION['email'])) {
+  if(isset($_SESSION['email'])){
+      $email = $_SESSION['email'];
+      $query = mysqli_query($connect, "SELECT * FROM patient where email='$email'");
+  }
+  else{
+      $id_patient = $_SESSION['id_patient'];
+      $query = mysqli_query($connect, "SELECT * FROM patient where id_patient = '$id_patient'");
+      $result = mysqli_fetch_array($query);
+  }
 ?>
 
 <!DOCTYPE html>
@@ -94,9 +100,6 @@ Easy Doctor
 						</ul>
       </li>
       <li>
-        <a>Kontak</a>
-      </li>
-      <li>
         <a href="profile.php" class='active'>Profile</a>
       </li>
     <li>
@@ -104,6 +107,9 @@ Easy Doctor
       </li>
       <li style="list-style-type:'\f08b'">
         <a href = "../listrs.php">List Rumah Sakit</a>
+      </li>
+      <li>
+        <a>Kontak</a>
       </li>
       <li style="list-style-type:'\f08b'">
         <a href = "signout.php">Logout</a>
@@ -123,7 +129,7 @@ Easy Doctor
       <div class="col-md-5  toppad  pull-right col-md-offset-3 ">
 
        <br>
-<p class=" text-info">May 23,2016,03:00 pm </p>
+<p class=" text-info"><?php echo date("d-m-Y"); ?> </p>
       </div>
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
 
@@ -166,7 +172,7 @@ Easy Doctor
                            <tr>
                                <tr>
                           <td>Jenis Kelamin</td>
-                          <td>Perempuan</td>
+                          <td><?php echo $result['sex']; ?></td>
                         </tr>
                           <tr>
                           <td>Alamat</td>
@@ -179,8 +185,13 @@ Easy Doctor
                           <td>Phone Number</td>
                           <td><?php echo $result['phone_number']?><br>
                           </td>
-
                         </tr>
+                        <tr>
+                          <td>
+                            <a href="changeprofile.php?id=<?php echo $result['id_patient'];?>" class="btn btn-primary" style="margin-left:100px">Edit Profil</a>
+                          </td>
+                        </tr>
+
                       </form>
 
 
@@ -188,7 +199,7 @@ Easy Doctor
                   </table>
 
 
-                  <a href="changeprofile.php" class="btn btn-primary" style="margin-left:100px">Edit Profil</a>
+
                 </div>
               </div>
             </div>

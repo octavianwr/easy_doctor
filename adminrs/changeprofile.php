@@ -43,7 +43,7 @@
               </p>
               <br><button class="btn waves-effect waves-teal" type="submit" >SUBMIT</button>
               </form>
-              <form class="" action="profile.php" method="post">
+              <form class="" action="changeprofile.php" method="post">
                 <button type="submit" name="button">BATAL</button>
               </form>
   </body>
