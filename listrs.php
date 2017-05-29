@@ -1,15 +1,14 @@
 <?php
   include 'connect.php';
-  //require 'header.php';
-  $query_rs = mysqli_query($connect, "SELECT * FROM admin_rs");
+  error_reporting(E_PARSE);
+    $query_rs = mysqli_query($connect, "SELECT hospital_name, name, id_hospital, street,city FROM admin_rs, provinces where id=id_provinces order by hospital_name");
 
-  if($_SESSION['id_patient']!="nouser"){
+  if ($_SESSION['id_patient']!="nouser") {
     $id_patient = $_SESSION['id_patient'];
       $query = mysqli_query($connect, "SELECT * FROM patient where id_patient = '$id_patient'");
       $result = mysqli_fetch_array($query);
-  }
-  ?>
-
+    }
+?>
 <!DOCTYPE html>
 <html >
 <head>
@@ -22,16 +21,6 @@
 #slidy-container {
   width: 100%; overflow: hidden; margin: 0 auto;
 }
-
-.modal-backdrop {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 1040;
-    background-color: transparent!important;
-}
     </style>
 
 <meta name="description" content="Cari Dokter">
@@ -43,8 +32,8 @@
 <!-- Stylesheet
     ================================================== -->
 <link rel="shortcut icon" href="ico/cardiogram.png">
-<link rel="stylesheet" type="text/css"  href="css/profile.css">
-<link rel="stylesheet" href="css/style3.css">
+<link rel="stylesheet" type="text/css"  href="css/style.css">
+<link rel="stylesheet" href="css/style2.css">
 <link rel="stylesheet" type="text/css"  href="css/animate.css">
 <link rel="stylesheet" type="text/css"  href="css/animate.min.css">
 <link rel="stylesheet" type="text/css" href="css/prettyPhoto.css">
@@ -68,24 +57,26 @@
 Easy Doctor
     </div>
 
-    <?php if($_SESSION['id_patient']!="nouser"){ ?>
+    <?php
+      if ($_SESSION['id_patient']!="nouser") { ?>
+        <div class="profile clearfix">
+                   <div class="profile_pic">
+                     <img src="../images/img.jpg" alt="..." class="img-circle profile_img">
+                   </div>
+                   <div class="profile_info">
+                     <span>Selamat Datang,</span>
+                     <h2	><?php echo $result['username']; ?></h2>
+                   </div>
+                 </div>
+      <?php } ?>
 
-      <div class="profile clearfix">
-                 <div class="profile_pic">
-                   <img src="images/img.jpg" alt="..." class="img-circle profile_img">
-                 </div>
-                 <div class="profile_info">
-                   <span>Selamat Datang,</span>
-                   <h2	><?php echo $result['username']; ?></h2>
-                 </div>
-               </div>
-    <?php } ?>
 
     <ul class='nav'>
+
       <li>
-        <a href="index.php">Homepage</a>
+        <a  href="index.php">Homepage</a>
       </li>
-            <li>
+      <li>
         <a>Cari Dokter</a>
       </li>
       <li class="dropdown">
@@ -94,59 +85,44 @@ Easy Doctor
 							<li class="page-scroll"> <a href="#garda1">Mata</a></li>
 							<li class="page-scroll"> <a href="#garda2">Tulang & Sendi</a></li>
 							<li class="page-scroll"> <a href="#garda3">Kanker</a></li>
-							<li class="page-scroll"> <a href="#garda4">Anak & Bayi</a></li>
-							<li class="page-scroll"> <a href="#garda5">Penyakit Pencernaan</a></li>
+							<li class="page-scroll" class="fa fa-star" aria-hidden="true"> <a href="#garda4">Anak & Bayi</a></li>
+							<li class="page-scroll" class="fa fa-star" aria-hidden="true"> <a href="#garda5">Penyakit Pencernaan</a></li>
 							<li class="page-scroll"> <a href="#garda5">Telinga, Hidung & Tenggorokan</a></li>
 							<li class="page-scroll"> <a href="#garda5">Operasi Umum</a></li>
 							<li class="page-scroll"> <a href="#garda5">Hati</a></li>
 							<li class="page-scroll"> <a href="#garda5">Pengobatan Internal</a></li>
-							<li class="page-scroll"> <a href="#garda5">Kesehatan Pria</a></li>
-							<li class="page-scroll"> <a href="#garda5">Kesehatan Wanita</a></li>
-							<li class="page-scroll"> <a href="#garda5">Ilmu Saraf</a></li>
 							<li class="page-scroll"> <a href="#garda5">Operasi plastik</a></li>
-							<li class="page-scroll"> <a href="#garda5">Kulit</a></li>
 
 						</ul>
       </li>
 
-      <?php if($_SESSION['id_patient']!="nouser"){ ?>
+      <?php if($_SESSION['id_patient']!="nouser") { ?>
         <li>
           <a href="patient/profile.php">Profile</a>
         </li>
-
         <li>
             <a href="patient/jadwalsaya.php">Jadwal Saya</a>
           </li>
-      <?php } ?>
-
+        <?php } ?>
 
       <li style="list-style-type:'\f08b'">
-        <a href = "listrs.php" class='active'>List Rumah Sakit</a>
+        <a class='active' href = "listrs.php">List Rumah Sakit</a>
       </li>
-
       <li>
         <a>Kontak</a>
       </li>
 
-      <?php if($_SESSION['id_patient']!="nouser"){ ?>
+      <?php if ($_SESSION['id_patient']!="nouser") { ?>
         <li style="list-style-type:'\f08b'">
           <a href = "patient/signout.php">Logout</a>
         </li>
       <?php } ?>
-      <?php if($_SESSION['id_hospital']!="nouser"){ ?>
-        <li style="list-style-type:'\f08b'">
-          <a href = "admin_rs/signout.php">Logout</a>
-        </li>
+
+      <?php if($_SESSION['id_patient']=="nouser") { ?>
+      <li>
+        <a href="signin.php">Login</a>
+      </li>
       <?php } ?>
-
-      <?php if($_SESSION['id_patient']=="nouser"){ ?>
-        <li style="list-style-type:'\f08b'">
-          <a href = "signin.php">Login</a>
-        </li>
-      <?php } ?>
-
-
-
 
     </ul>
   </div>
@@ -154,19 +130,14 @@ Easy Doctor
 
 
 
+
   <div class='content isOpen'>
     <a class='button'></a>
-
-
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
-
-<div class="container">
-	<div class="row">
-
-
+  <div class="intro-body">
+    <div class="container">
+      <div class="row">
         <div class="col-md-12">
-        <h4>Jadwal Saya</h4>
+        <h4>List Rumah Sakit</h4>
         <div class="table-responsive">
 
 
@@ -190,7 +161,7 @@ Easy Doctor
       		'<tr>
       			<td>'.$count++.'</td>
       			<td>'.$result_rs['hospital_name'].'</td>
-      			<td>'.$result_rs['city'].'</td>
+      			<td>Jalan '.$result_rs['street'].', Kota '.$result_rs['city'].', Provinsi '.$result_rs['name'].'</td>
       			<td><a href="see_doctor.php?id='.$result_rs['id_hospital'].'"><button type="button" class="btn btn-primary">lihat jadwal dokter</button></td>
       		   </tr>';
       	}
@@ -199,79 +170,12 @@ Easy Doctor
 
 </table>
 
-<div class="clearfix"></div>
-
-
-            </div>
-
-        </div>
-	</div>
-</div>
-
-
-
-
-	<div id="footer">
-  <div class="container">
-    <p>Copyright &copy; Easy Doctor. Designed by <a href="#" rel="nofollow">Easy Doctor</a></p>
+          </div>
+      </div>
   </div>
 </div>
-</div>
-  </div>
-  <div class="modal" id="edit" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
-      <div class="modal-dialog">
-    <div class="modal-content">
-          <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-        <h4 class="modal-title custom_align" id="Heading">Edit Your Detail</h4>
-      </div>
-          <div class="modal-body">
-          <div class="form-group">
-        <input class="form-control " type="text" placeholder="Mohsin">
-        </div>
-        <div class="form-group">
-
-        <input class="form-control " type="text" placeholder="Irshad">
-        </div>
-        <div class="form-group">
-        <textarea rows="2" class="form-control" placeholder="CB 106/107 Street # 11 Wah Cantt Islamabad Pakistan"></textarea>
 
 
-        </div>
-      </div>
-          <div class="modal-footer ">
-        <button type="button" class="btn btn-warning btn-lg" style="width: 100%;"><span class="glyphicon glyphicon-ok-sign"></span> Update</button>
-      </div>
-        </div>
-    <!-- /.modal-content -->
-  </div>
-      <!-- /.modal-dialog -->
-    </div>
-
-
-
-    <div class="modal" id="delete" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
-      <div class="modal-dialog">
-    <div class="modal-content">
-          <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-        <h4 class="modal-title custom_align" id="Heading">Delete this entry</h4>
-      </div>
-          <div class="modal-body">
-
-       <div class="alert alert-danger"><span class="glyphicon glyphicon-warning-sign"></span> Are you sure you want to delete this Record?</div>
-
-      </div>
-        <div class="modal-footer ">
-        <button type="button" class="btn btn-success" ><span class="glyphicon glyphicon-ok-sign"></span> Yes</button>
-        <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> No</button>
-      </div>
-        </div>
-    <!-- /.modal-content -->
-  </div>
-      <!-- /.modal-dialog -->
-    </div>
-</body>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script type="text/javascript" src="js/jquery.1.11.1.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
@@ -282,7 +186,6 @@ Easy Doctor
 <script type="text/javascript" src="js/jquery.parallax.js"></script>
 <script type="text/javascript" src="js/jqBootstrapValidation.js"></script>
 <script type="text/javascript" src="js/contact_me.js"></script>
-<script type="text/javascript" src="js/jadwalsaya.js"></script>
 
 <!-- Javascripts
     ================================================== -->

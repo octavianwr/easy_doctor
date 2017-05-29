@@ -13,7 +13,11 @@ if($_SESSION['id_hospital']!="nouser"){ //ini masih status global, belum dipisah
 
 <script>document.location.href='adminrs/index.php';</script>
 <?php }
+if($_SESSION['id_admin']!="nouser"){
 ?>
+<script>document.location.href='superadmin/index.php';</script>
+<?php } ?>
+
 <!DOCTYPE html>
 <html >
 <head>
@@ -83,11 +87,7 @@ Easy Doctor
 							<li class="page-scroll"> <a href="#garda5">Operasi Umum</a></li>
 							<li class="page-scroll"> <a href="#garda5">Hati</a></li>
 							<li class="page-scroll"> <a href="#garda5">Pengobatan Internal</a></li>
-							<li class="page-scroll"> <a href="#garda5">Kesehatan Pria</a></li>
-							<li class="page-scroll"> <a href="#garda5">Kesehatan Wanita</a></li>
-							<li class="page-scroll"> <a href="#garda5">Ilmu Saraf</a></li>
 							<li class="page-scroll"> <a href="#garda5">Operasi plastik</a></li>
-							<li class="page-scroll"> <a href="#garda5">Kulit</a></li>
 
 						</ul>
       </li>

@@ -10,6 +10,8 @@ if($_SESSION['id_hospital']!="nouser"){ //ini masih status global, belum dipisah
 ?>
 <script>document.location.href='adminrs/index.php';</script>
 <?php }
+
+if(($_SESSION['id_patient'] =="nouser") AND ($_SESSION['id_hospital'] == "nouser")){
 ?>
 <!DOCTYPE html>
 <html>
@@ -27,3 +29,4 @@ if($_SESSION['id_hospital']!="nouser"){ //ini masih status global, belum dipisah
     </form>
       </body>
 </html>
+<?php } ?>

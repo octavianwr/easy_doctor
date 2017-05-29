@@ -3,7 +3,10 @@
 	include "connect.php";
   if($_GET['id']){
         $id_hospital = $_GET['id'];
-        $query_dr = mysqli_query($connect, "SELECT * FROM doctor where id_hospital = '$id_hospital'");
+        $query_dr = mysqli_query($connect, "SELECT * FROM doctor where hospital_id = '$id_hospital'");
+				$query_rs =  mysqli_query($connect, "SELECT * FROM admin_rs where id_hospital = '$id_hospital'");
+				$list_rs = mysqli_fetch_array($query_rs);
+				$hospital = $list_rs['hospital_name'];
   }
 
 	if($_SESSION['id_patient']!="nouser"){
@@ -76,14 +79,14 @@ Easy Doctor
 								 </div>
 								 <div class="profile_info">
 									 <span>Selamat Datang,</span>
-									 <h2	><?php echo $result['username']; ?></h2>
+									 <h2	><?php echo $result['name']; ?></h2>
 								 </div>
 							 </div>
 		<?php } ?>
     <ul class='nav'>
 			<?php if($_SESSION['id_patient']!="nouser"){ ?>
 				<li>
-	        <a class='active' href="patient/index.php">Homepage</a>
+	        <a  href="patient/index.php">Homepage</a>
 	      </li>
       <?php } ?>
 			<?php if($_SESSION['id_patient']=="nouser"){ ?>
@@ -128,11 +131,11 @@ Easy Doctor
 					</li>
 			<?php } ?>
       <li style="list-style-type:'\f08b'">
-        <a href = "listrs.php">List Rumah Sakit</a>
+        <a class='active' href = "listrs.php">List Rumah Sakit</a>
       </li>
 			<?php if($_SESSION['id_patient']!="nouser"){ ?>
         <li style="list-style-type:'\f08b'">
-          <a href = "signout.php">Logout</a>
+          <a href = "patient/signout.php">Logout</a>
         </li>
       <?php } ?>
 
@@ -159,7 +162,7 @@ Easy Doctor
 
 
         <div class="col-md-12">
-        <h4>Jadwal Saya</h4>
+        <h4>List Dokter <?php echo $hospital ?> </h4>
         <div class="table-responsive">
 
 
@@ -170,7 +173,6 @@ Easy Doctor
 										 <th>No</th>
 	 									<th>Nama Dokter</th>
 	 									<th>Email</th>
-	 									<th>Tanggal</th>
 	 									<th>Jam</th>
 
                    </thead>
@@ -183,10 +185,9 @@ Easy Doctor
 					echo
 					'<tr>
 						<td>'.$count++.'</td>
-						<td>'.$result_dr['name'].'</td>
+						<td>'.$result_dr['name_doctor'].'</td>
 						<td>'.$result_dr['email'].'</td>
-						<td>'.$result_dr['date_book'].'</td>
-						<td>'.$result_dr['jam'].'</td>
+						<td>'.$result_dr['clock'].'</td>
 						<td><a href="patient/bookingdoctor_process.php?id='.$result_dr['id_doctor'].'" button type="button" class="btn btn-danger">Pesan Dokter</button></td>
 					</tr>';
 				}
