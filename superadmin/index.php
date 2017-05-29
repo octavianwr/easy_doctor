@@ -1,7 +1,7 @@
 <?php
   include '../connect.php';
   //require 'header.php';
-  if($_SESSION['id_patient']=="nouser"){
+  if($_SESSION['id_admin']=="nouser"){
 ?>
 <script language="javascript">alert("Anda belum login");</script>
 <script>document.location.href='signin.php';</script>
@@ -19,11 +19,8 @@
     <form class="" action="index.php" method="post">
       <button type="submit">HOME</button>
     </form>
-    <br><form class="" action="profile.php" method="">
-      <button type="submit">PROFILE</button>
-    </form>
-    <br><form class="" action=jadwaldokter.php method="post">
-      <button type="submit">JADWAL SAYA</button>
+    <br><form class="" action="admin_rs/signup.php" method="">
+      <button type="submit">TAMBAH RUMAH SAKIT</button>
     </form>
     <br><form class="" action="search.php" method="post">
       <button type="submit">CARI DOKTER</button>

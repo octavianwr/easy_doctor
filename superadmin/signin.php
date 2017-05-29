@@ -1,7 +1,7 @@
 <?php
-  include '../connect.php';
+  include '../config.php';
   //require 'header.php';
-  if($_SESSION['id_patient']!="nouser"){
+  if($_SESSION['id_admin']!="nouser"){
 ?>
 <script language="javascript">alert("Anda sudah login");</script>
 <script>document.location.href='index.php';</script>
@@ -11,10 +11,10 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Sign In Pasien</title>
+    <title>Sign In Super Admin</title>
   </head>
   <body>
-    <h1>Sign In Pasien</h1>
+    <h1>Sign In Super Admin</h1>
     <form class="" action="signin_process.php" method="post">
       <br>Email<br>
       <input  type="email" name="email" id="email" required>

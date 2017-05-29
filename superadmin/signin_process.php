@@ -8,11 +8,11 @@ if(isset($_SESSION['user'])!=""){
 	$email = $_POST['email'];
 	$password = $_POST['pass'];
 
-	$result_patient = mysqli_query($koneksi, "SELECT * FROM patient WHERE email='$email'");
-	$row = mysqli_fetch_array($result_patient, MYSQLI_ASSOC);
+	$result_admin = mysqli_query($koneksi, "SELECT * FROM super_admin WHERE email='$email'");
+	$row = mysqli_fetch_array($result_admin, MYSQLI_ASSOC);
 	if(password_verify($password, $row['password'])) {
-		$_SESSION['id_patient'] = $row['id_patient'];
-		$_SESSION['status'] = "patient";
+		$_SESSION['id_admin'] = $row['id_admin'];
+		$_SESSION['status'] = "super admin";
 		?>
 			<script language="javascript">alert("Logging Successful");</script>
 			<script>document.location.href='index.php';</script>
